@@ -14,7 +14,7 @@ class _MainPageBranchState extends State<MainPageBranch> {
     return Scaffold(
       body: Container(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(

@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
+        resizeToAvoidBottomInset:false,
         body: Container(
           child: Column(
               mainAxisSize: MainAxisSize.max,
