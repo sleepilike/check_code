@@ -1,17 +1,18 @@
-
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:registration_staff/ui/mainpage/mainpage.dart';
+
+import '../../common/check.dart';
+import '../../config/const.dart';
+import '../mainpage/mainpage.dart';
 
 class LoginPage extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     return new _LoginPageState();
   }
 }
+
 class _LoginPageState extends State<LoginPage> {
   var leftRighthRadding = 30.0;
   var topBottomPadding = 4.0;
@@ -21,117 +22,121 @@ class _LoginPageState extends State<LoginPage> {
   var _userPassController = new TextEditingController();
   var _useNameController = new TextEditingController();
 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Widget build(BuildContext context) {
     return new Scaffold(
-        resizeToAvoidBottomInset:false,
+        resizeToAvoidBottomInset: false,
         body: Container(
           child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                SizedBox(height: 30,),
                 Padding(
                   padding: new EdgeInsets.all(25.0),
-                  child:Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.network(
-                        "https://bkimg.cdn.bcebos.com/pic/dc54564e9258d109906ce9d5dc58ccbf6d814dcd?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg",
-                        width: 30.0,
-                        height: 30.0,
-                      ),
+                      Image.asset(LOGO, width: 45, height: 45,),
                       Text(
                         "  广东省农业科学院防疫信息系统",
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .title,
+                        style: Theme.of(context).textTheme.title,
                       ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: new EdgeInsets.fromLTRB(
-                      leftRighthRadding, 50.0, leftRighthRadding, 10.0
-                  ),
-                  child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: new EdgeInsets.fromLTRB(
-                              70.0, 50.0, 0.0, 10.0
-                          ),
-                          child: Icon(Icons.person),
-                        ),
-                        Padding(
-                          padding: new EdgeInsets.fromLTRB(
-                              10.0, 50.0, leftRighthRadding, 10.0
-                          ),
-                          child: Text(
-                            "管理员登录",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 30.0
+                      leftRighthRadding, 50.0, leftRighthRadding, 10.0),
+                  child: Row(children: <Widget>[
+                    Padding(
+                      padding: new EdgeInsets.fromLTRB(70.0, 50.0, 0.0, 10.0),
+                      child: Icon(Icons.person),
+                    ),
+                    Padding(
+                      padding: new EdgeInsets.fromLTRB(
+                          10.0, 50.0, leftRighthRadding, 10.0),
+                      child: Text(
+                        "管理员登录",
+                        style: TextStyle(color: Colors.black, fontSize: 30.0),
+                      ),
+                    )
+                  ]),
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: new EdgeInsets.fromLTRB(leftRighthRadding,
+                            50.0, leftRighthRadding, topBottomPadding),
+                        child: TextFormField(
+                          validator: (v) => strNoEmpty(v) ? null : '用户名不能为空',
+                          style: hintTips,
+                          controller: _useNameController,
+                          decoration: InputDecoration(
+                            labelText: '请输入用户名',
+                            hintText: '您的用户名',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 13,
                             ),
+                            prefixIcon: Icon(Icons.person),
                           ),
-                        )
-                      ]) ,
-                ),
-
-
-                Padding(
-                  padding: new EdgeInsets.fromLTRB(
-                      leftRighthRadding, 50.0, leftRighthRadding,
-                      topBottomPadding),
-                  child: TextField(
-                    style: hintTips,
-                    controller: _useNameController,
-                    decoration: new InputDecoration(hintText: "请输入用户名"),
-                    obscureText: false,
-                  ),
-                ),
-                Padding(
-                  padding: new EdgeInsets.fromLTRB(
-                      leftRighthRadding, 50.0, leftRighthRadding,
-                      topBottomPadding),
-                  child: TextField(
-                    style: hintTips,
-                    controller: _userPassController,
-                    decoration: new InputDecoration(hintText: "请输入密码"),
-                    obscureText: true,
+                          obscureText: false,
+                        ),
+                      ),
+                      Padding(
+                        padding: new EdgeInsets.fromLTRB(leftRighthRadding,
+                            50.0, leftRighthRadding, topBottomPadding),
+                        child: TextFormField(
+                          validator: (v) => strNoEmpty(v) ? null : '密码不能为空',
+                          style: hintTips,
+                          controller: _userPassController,
+                          decoration: new InputDecoration(hintText: "请输入密码",
+                            labelText: '请输入密码',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 13,
+                            ),
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                          obscureText: true,
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Container(
                   width: 360.0,
                   margin: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
-                  padding: new EdgeInsets.fromLTRB(
-                      leftRighthRadding, topBottomPadding, leftRighthRadding,
-                      topBottomPadding),
+                  padding: new EdgeInsets.fromLTRB(leftRighthRadding,
+                      topBottomPadding, leftRighthRadding, topBottomPadding),
                   child: new Card(
                     color: Colors.green,
                     elevation: 6.0,
                     child: new FlatButton(
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context)=>MainPage())
-                          );
-                        },
+                        onPressed: () => _handleLogin(context),
                         child: new Padding(
                           padding: new EdgeInsets.all(10.00),
                           child: new Text(
                             "登录",
                             style: new TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0
-                            ),
+                                color: Colors.white, fontSize: 16.0),
                           ),
-                        )
-                    ),
+                        )),
                   ),
                 )
-              ]
-          ),
-        )
+              ]),
+        ));
+  }
 
-    );
+  _handleLogin(BuildContext context) {
+    if (_formKey.currentState.validate()) {
+
+    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MainPage()));
   }
 }

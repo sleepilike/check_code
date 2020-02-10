@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:registration_staff/ui/dialog/yuan.dart';
-import 'package:registration_staff/ui/mainwidget/imformation.dart';
-import 'package:registration_staff/ui/mainwidget/persons.dart';
+import 'package:registration_admin/ui/dialog/yuan.dart';
+import 'package:registration_admin/ui/mainwidget/imformation.dart';
+import 'package:registration_admin/ui/mainwidget/persons.dart';
 
 class MainPageBranch extends StatefulWidget {
   @override
@@ -44,7 +44,7 @@ class _MainPageBranchState extends State<MainPageBranch> {
               flex: 1,
               child:Column(
                 children: <Widget>[
-                  Imformation(),
+                  Information(),
                   SizedBox(
                     height: 4,
                   ),

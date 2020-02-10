@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:registration_staff/ui/widget/card_item.dart';
 
-class Imformation extends StatefulWidget{
+import '../widget/card_item.dart';
+
+class Information extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    return new _ImformationState();
+    return new _InformationState();
   }
 }
 
-class _ImformationState extends State<Imformation>{
+class _InformationState extends State<Information>{
 
   Widget build (BuildContext context){
     return CardItem(

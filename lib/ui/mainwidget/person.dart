@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:registration_staff/ui/mainwidget/persons.dart';
+
+import 'persons.dart';
 class Person {
   final String name;
   final String age;

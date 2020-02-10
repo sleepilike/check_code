@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:registration_staff/ui/mainwidget/person.dart';
-import 'package:registration_staff/ui/widget/card_item.dart';
+
+import '../widget/card_item.dart';
+import 'person.dart';
 
 Widget buildTableCell(String label){
   return new Container(
