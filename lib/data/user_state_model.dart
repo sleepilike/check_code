@@ -9,6 +9,9 @@ class UserStateModel extends ChangeNotifier {
   UserRepo _repository = UserRepo();
   UserEntity _user;
 
+
+  UserEntity get user => _user;
+
   bool get isLogin => _user != null;
 
   Future init () async {

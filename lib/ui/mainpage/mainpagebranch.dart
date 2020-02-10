@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:registration_admin/config/const.dart';
 import 'package:registration_admin/ui/dialog/yuan.dart';
 import 'package:registration_admin/ui/mainwidget/imformation.dart';
 import 'package:registration_admin/ui/mainwidget/persons.dart';
@@ -24,10 +25,11 @@ class _MainPageBranchState extends State<MainPageBranch> {
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.network(
-                      "https://bkimg.cdn.bcebos.com/pic/dc54564e9258d109906ce9d5dc58ccbf6d814dcd?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg",
-                      width: 30.0,
-                      height: 30.0,
+                    SizedBox(height: 20,),
+                    Image.asset(
+                      LOGO,
+                      width: 45.0,
+                      height: 45.0,
                     ),
                     Text(
                       " 广东省农业科学院防疫信息系统",

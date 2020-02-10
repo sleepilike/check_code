@@ -15,6 +15,7 @@ class UserRepo {
       String account = sp.getString(KEY_USERNAME);
       String password  = sp.getString(KEY_PASSWORD);
 
+      print('初始化， 获取账号：' + account);
       if (account == null || password == null)
         return Future.error('无初始登陆状态');
       return login(account, password);
@@ -25,14 +26,14 @@ class UserRepo {
 
   Future login(String username, String password) async {
     try {
-      UserEntity res = await ReqModel.post(API.LOGIN, {"account": username, "password": password});
+      var res = await ReqModel.post(API.LOGIN, {"account": username, "password": password});
       SharedPreferences sp = await SharedPreferences.getInstance();
       sp.setString(KEY_PASSWORD, password);
       sp.setString(KEY_USERNAME, username);
 
-      Future.value(res);
+      return Future.value(UserEntity.fromJson(res));
     } catch (error) {
-      Future.error(error);
+      return Future.error(error);
     }
   }
 }
