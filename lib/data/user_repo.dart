@@ -1,6 +1,7 @@
 
 
 import 'package:registration_admin/common/req_model.dart';
+import 'package:registration_admin/entity/institue_entity.dart';
 import 'package:registration_admin/entity/user_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,4 +37,5 @@ class UserRepo {
       return Future.error(error);
     }
   }
+
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:registration_admin/common/check.dart';
 import 'package:registration_admin/config/const.dart';
+import 'package:registration_admin/entity/institue_entity.dart';
 import 'package:registration_admin/entity/monitor_request_entity.dart';
 import 'package:registration_admin/ui/widget/date_spinner.dart';
 
@@ -9,8 +11,10 @@ typedef ConditionCallback = Function(MonitorRequestEntity);
 class ConditionDialog extends Dialog {
   MonitorRequestEntity _entity;
   ConditionCallback _callback;
+  List<InstituteEntity> institutes;
 
-  ConditionDialog(this._entity, this._callback);
+  ConditionDialog(this._entity, this._callback, {this.institutes});
+  bool get showInstitutes => listNoEmpty(institutes);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +40,10 @@ class ConditionDialog extends Dialog {
                       },
                     )
                   ],
+                ),
+                Visibility(
+                  visible: showInstitutes,
+                  child: null, /// todo 机构选择框
                 ),
                 DateSpinner("起始时间", _entity.startTime, (res) => _entity.startTime = res),
                 DateSpinner("结束时间", _entity.endTime, (res) => _entity.endTime = res),

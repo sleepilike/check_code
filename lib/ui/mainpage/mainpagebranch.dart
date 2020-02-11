@@ -22,7 +22,7 @@ class _MainPageBranchState extends State<MainPageBranch> {
           int adminId = value.user.adminId;
           return ChangeNotifierProvider<MonitorStateModel>( // 注册监控信息状态管理器
             create: (BuildContext context) =>
-                MonitorStateModel()..init(adminId),
+                MonitorStateModel()..init(adminId, value.user.role),
             child: Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -99,7 +99,7 @@ class _MainPageBranchState extends State<MainPageBranch> {
                         return ConditionDialog(value.requestEntity, (res) {
                           value.refreshData(res).then((value) => BotToast.showText(text: '数据更新成功'))
                               .catchError((error) => BotToast.showText(text: '数据更新失败，' + error.toString()));
-                        });
+                        }, institutes: value.institutes,);
                       });
                 },
               );

@@ -4,6 +4,7 @@ class UserEntity {
 	String institute;
 	int staffNum;
 	int fillNum;
+  int role;
 
 	UserEntity({this.adminName, this.adminId, this.institute, this.staffNum, this.fillNum});
 
@@ -13,6 +14,7 @@ class UserEntity {
 		institute = json['institute'];
 		staffNum = json['staffNum'];
 		fillNum = json['fillNum'];
+		role = json['role'];
 	}
 
 	Map<String, dynamic> toJson() {

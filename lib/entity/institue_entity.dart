@@ -1,3 +1,4 @@
+
 class InstituteEntity {
 	int instituteSchoolId;
 	int schoolId;
@@ -20,5 +21,11 @@ class InstituteEntity {
 		data['instituteNum'] = this.instituteNum;
 		data['instituteName'] = this.instituteName;
 		return data;
+	}
+
+	static List<InstituteEntity> fromJsonList(List list) {
+		List<InstituteEntity> res = List();
+		list.forEach((element) {res.add(InstituteEntity.fromJson(element));});
+		return res;
 	}
 }

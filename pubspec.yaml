@@ -21,12 +21,13 @@ dependencies:
     sdk: flutter
   dio: ^3.0.8
   intl: ^0.16.1
-  provider: ^3.0.0+1 # 跨界面管理state
+  provider: ^4.0.0 # 跨界面管理state
   shared_preferences: ^0.5.6
   date_format: ^1.0.6
   bot_toast: any
   url_launcher: ^5.4.1
   city_pickers: ^0.1.30
+  smart_select: ^3.0.3
 
 
   # The following adds the Cupertino Icons font to your application.

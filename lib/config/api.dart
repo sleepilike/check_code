@@ -7,4 +7,6 @@ class API {
 
   static const MONITOR_LIST = "monitor/list";
 
+  static const INSTITUTE = 'admin_s/institute/list';
+
 }
