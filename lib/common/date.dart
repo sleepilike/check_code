@@ -2,9 +2,13 @@ import 'package:intl/intl.dart';
 
 import 'check.dart';
 
-class DateTimeForMater {
+class DateUtil {
   static String full = "yyyy-MM-dd HH:mm:ss";
 
+  static String nowDateString() {
+    return formatDateV(DateTime.now(), format: "yyyy-MM-dd");
+  }
+  
   static String formatDateV(DateTime dateTime, {bool isUtc, String format}) {
     if (dateTime == null) return "";
     format = format ?? full;

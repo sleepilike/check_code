@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Consumer<UserStateModel>(
           builder: (BuildContext context, UserStateModel value, Widget child) {
             // 已经登陆，跳转到首页
-            if (value.isLogin) {
+            if (value.autoLogin) {
               Future.delayed(Duration(milliseconds: 500), (){
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => MainPage()));

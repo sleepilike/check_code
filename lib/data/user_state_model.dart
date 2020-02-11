@@ -8,9 +8,12 @@ import 'user_repo.dart';
 class UserStateModel extends ChangeNotifier {
   UserRepo _repository = UserRepo();
   UserEntity _user;
+  bool _autoLogin = false;
 
 
   UserEntity get user => _user;
+
+  bool get autoLogin => _autoLogin;
 
   bool get isLogin => _user != null;
 
@@ -18,6 +21,7 @@ class UserStateModel extends ChangeNotifier {
     try {
       _user = await _repository.init();
 
+      _autoLogin = true;
       notifyListeners();
       return Future.value();
     } catch(error) {

@@ -5,4 +5,6 @@ class API {
 
   static const LOGIN = 'admin_s/login';
 
+  static const MONITOR_LIST = "monitor/list";
+
 }

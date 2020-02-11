@@ -1,17 +1,27 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:registration_admin/config/const.dart';
+import 'package:registration_admin/entity/monitor_request_entity.dart';
+import 'package:registration_admin/ui/widget/date_spinner.dart';
 
-class YuanDialog extends Dialog {
+/// 定制表格的条件筛选框
+typedef ConditionCallback = Function(MonitorRequestEntity);
+class ConditionDialog extends Dialog {
+  MonitorRequestEntity _entity;
+  ConditionCallback _callback;
+
+  ConditionDialog(this._entity, this._callback);
+
   @override
   Widget build(BuildContext context) {
     return Material(
         type: MaterialType.transparency,
         child: Center(
           child: Container(
+            margin: EdgeInsets.all(10),
             padding: EdgeInsets.all(10.0),
             color: Colors.white,
-            width: 350.0,
+            width: double.infinity,
             height: 300.0,
             child: Column(
               children: <Widget>[
@@ -27,23 +37,8 @@ class YuanDialog extends Dialog {
                     )
                   ],
                 ),
-                Divider(),
-                Radio(),
-                MaterialButton(
-                  child: new Text('请选择导出时间范围'),
-                  onPressed: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: new DateTime.now(),
-                      firstDate: new DateTime.now().subtract(new Duration(days: 30)), // 减 30 天
-                      lastDate: new DateTime.now().add(new Duration(days: 30)),       // 加 30 天
-                    ).then((DateTime val) {
-                      print(val);
-                    }).catchError((err) {
-                      print(err);
-                    });
-                  },
-                ),
+                DateSpinner("起始时间", _entity.startTime, (res) => _entity.startTime = res),
+                DateSpinner("结束时间", _entity.endTime, (res) => _entity.endTime = res),
                 //SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +57,10 @@ class YuanDialog extends Dialog {
                     RaisedButton(
                       child: Text("确定", style: TextStyle(color: Colors.white)),
                       color: Color(0xFF087f23),
-                      onPressed: () {},
+                      onPressed: () {
+                        _callback(_entity);
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 )
@@ -73,47 +71,16 @@ class YuanDialog extends Dialog {
   }
 }
 
-enum Charge { yuan, suo }
-
 class Radio extends StatefulWidget {
   @override
   _RadioState createState() => new _RadioState();
 }
 
 class _RadioState extends State<Radio> {
-  Charge _charge= Charge.yuan;
-
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-            children: <Widget>[
-              RadioListTile<Charge>(
-                value: Charge.yuan,
-                title: Text('院'),
-                groupValue: _charge,
-                activeColor: Colors.green,
-                onChanged: (Charge value) {
-                  print(value);
-                  setState(() {
-                    _charge = value;
-                  });
-                },
-              ),
-              RadioListTile<Charge>(
-                value: Charge.suo,
-                title: Text('所'),
-                groupValue: _charge,
-                activeColor: Colors.green,
-                onChanged: (Charge value) {
-                  print(value);
-                  setState(() {
-                    _charge = value;
-                  });
-                },
-              )
-            ]
-        )
-    );
+        child: Column(children: <Widget>[
+    ]));
   }
 }
