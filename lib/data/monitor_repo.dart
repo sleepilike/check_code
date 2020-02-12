@@ -32,4 +32,8 @@ class MonitorRepo {
       return Future.error(error);
     }
   }
+
+  Future getExcelUrl(MonitorRequestEntity requestEntity) {
+    return ReqModel.post(API.EXPORT_EXCEL, requestEntity.toJson());
+  }
 }

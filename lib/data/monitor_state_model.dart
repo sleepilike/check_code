@@ -42,6 +42,7 @@ class MonitorStateModel extends ChangeNotifier {
       // 不需要处理
     }
   }
+
   Future refreshData(MonitorRequestEntity requestEntity) async {
     try {
       _resultList = await _repository.getList(requestEntity);
@@ -53,7 +54,8 @@ class MonitorStateModel extends ChangeNotifier {
     }
   }
 
+  Future exportExcel(MonitorRequestEntity requestEntity) async {
 
-  void requestInstitutes() {
   }
+
 }

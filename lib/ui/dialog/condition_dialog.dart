@@ -28,6 +28,7 @@ class ConditionDialog extends Dialog {
             width: double.infinity,
             height: 300.0,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
                   children: <Widget>[
@@ -43,7 +44,7 @@ class ConditionDialog extends Dialog {
                 ),
                 Visibility(
                   visible: showInstitutes,
-                  child: null, /// todo 机构选择框
+                  child: Container(), /// todo 机构选择框
                 ),
                 DateSpinner("起始时间", _entity.startTime, (res) => _entity.startTime = res),
                 DateSpinner("结束时间", _entity.endTime, (res) => _entity.endTime = res),

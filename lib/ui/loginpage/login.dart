@@ -58,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                             height: 45,
                           ),
                           Text(
-                            "  广东省农业科学院防疫信息系统",
+                            " 广东省农业科学院防疫信息系统",
+                            softWrap: true,
+                            textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.title,
                           ),
                         ],
@@ -66,23 +68,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Padding(
                       padding: new EdgeInsets.fromLTRB(
-                          leftRighthRadding, 50.0, leftRighthRadding, 10.0),
-                      child: Row(children: <Widget>[
-                        Padding(
-                          padding:
-                              new EdgeInsets.fromLTRB(70.0, 50.0, 0.0, 10.0),
-                          child: Icon(Icons.person),
-                        ),
-                        Padding(
-                          padding: new EdgeInsets.fromLTRB(
-                              10.0, 50.0, leftRighthRadding, 10.0),
-                          child: Text(
-                            "管理员登录",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 30.0),
-                          ),
-                        )
-                      ]),
+                          10.0, 50.0, leftRighthRadding, 10.0),
+                      child: Text(
+                        "管理员登录",
+                        style:
+                        TextStyle(color: Colors.black, fontSize: 30.0),
+                      ),
                     ),
                     Form(
                       key: _formKey,
@@ -90,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: <Widget>[
                           Padding(
                             padding: new EdgeInsets.fromLTRB(leftRighthRadding,
-                                50.0, leftRighthRadding, topBottomPadding),
+                                10.0, leftRighthRadding, topBottomPadding),
                             child: TextFormField(
                               validator: (v) =>
                                   strNoEmpty(v) ? null : '用户名不能为空',
@@ -110,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: new EdgeInsets.fromLTRB(leftRighthRadding,
-                                50.0, leftRighthRadding, topBottomPadding),
+                                10.0, leftRighthRadding, topBottomPadding),
                             child: TextFormField(
                               validator: (v) => strNoEmpty(v) ? null : '密码不能为空',
                               style: hintTips,
@@ -132,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Container(
                       width: 360.0,
-                      margin: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
+                      margin: new EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
                       padding: new EdgeInsets.fromLTRB(
                           leftRighthRadding,
                           topBottomPadding,
