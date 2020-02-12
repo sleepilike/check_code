@@ -39,5 +39,9 @@ class UserStateModel extends ChangeNotifier {
     }
   }
 
-
+  void logout() {
+    _repository.logout();
+    _user = null;
+    _autoLogin = false;
+  }
 }

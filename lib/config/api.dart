@@ -9,6 +9,6 @@ class API {
 
   static const INSTITUTE = 'admin_s/institute/list';
 
-  static var EXPORT_EXCEL = 'monitor/excel/download';
+  static const EXPORT_EXCEL = 'monitor/excel/download';
 
 }

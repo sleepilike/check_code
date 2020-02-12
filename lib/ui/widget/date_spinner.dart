@@ -53,7 +53,7 @@ class _DateSpinnerState extends State<DateSpinner> {
                     color: Colors.grey,
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 30,
                   ),
                   Text(
                     label,
@@ -72,11 +72,6 @@ class _DateSpinnerState extends State<DateSpinner> {
                 onTap: this._showDatePicker,
               ),
             ],
-          ),
-          SizedBox(height: 4,),
-          Divider(
-            color: Colors.black,
-            height: 4,
           ),
         ],
       ),

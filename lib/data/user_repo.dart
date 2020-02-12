@@ -38,4 +38,9 @@ class UserRepo {
     }
   }
 
+  /// 登出，清除sp
+  void logout() {
+
+  }
+
 }

@@ -9,6 +9,10 @@ import 'package:registration_admin/entity/worker_entity.dart';
 import 'monitor_repo.dart';
 
 
+/// 监控信息状态管理类
+/// 主要功能：1.根据筛选条件获取监控信息和导出excel；
+///          2. 保存筛选条件和选中机构
+///          3. 初始化机构列表
 class MonitorStateModel extends ChangeNotifier {
   MonitorRepo _repository = MonitorRepo();
   List<WorkerEntity> _resultList;
@@ -24,7 +28,9 @@ class MonitorStateModel extends ChangeNotifier {
   MonitorRequestEntity get requestEntity => _requestEntity;
   List<WorkerEntity> get resultList => _resultList;
   get selectedIds => _requestEntity.selectedIds;
-  get isRegister => listNoEmpty(_resultList); // 是否有职工登记信息
+  get isRegister => listNoEmpty(_resultList);
+
+  bool get hasMonitorInfo => listNoEmpty(_resultList); // 是否有记录
 
   init(adminId, role) async{
     print('MonitorStateModel init exec');
@@ -54,8 +60,8 @@ class MonitorStateModel extends ChangeNotifier {
     }
   }
 
-  Future exportExcel(MonitorRequestEntity requestEntity) async {
-
+  Future exportExcel() {
+    return _repository.getExcelUrl(_requestEntity);
   }
 
 }

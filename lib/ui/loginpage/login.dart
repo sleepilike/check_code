@@ -152,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _handleLogin(BuildContext context) {
     if (_formKey.currentState.validate()) {
-      Provider.of<UserStateModel>(context)
+      Provider.of<UserStateModel>(context, listen: false)
           .login(_userPassController.text, _userPassController.text)
           .then((value) {
         // 登陆成功

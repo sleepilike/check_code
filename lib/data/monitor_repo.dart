@@ -1,5 +1,3 @@
-
-
 import 'package:registration_admin/common/req_model.dart';
 import 'package:registration_admin/config/api.dart';
 import 'package:registration_admin/entity/institue_entity.dart';
@@ -22,18 +20,27 @@ class MonitorRepo {
     return getList(MonitorRequestEntity(adminId: adminId));
   }
 
-
   Future getInstitutes(int adminId) async {
     try {
-      var res = await ReqModel.get(API.INSTITUTE, {"adminId", adminId});
+      Map request = Map();
+      request["adminId"] = adminId;
+      var res = await ReqModel.get(API.INSTITUTE, {"adminId": adminId});
+//      var res = await ReqModel.get(API.INSTITUTE, request);
+      print(res.toString());
       return Future.value(InstituteEntity.fromJsonList(res));
     } catch (error) {
-      print('InstituteRepo error: '+ error.toString());
+      print('InstituteRepo error: ' + error.toString());
       return Future.error(error);
     }
   }
 
-  Future getExcelUrl(MonitorRequestEntity requestEntity) {
-    return ReqModel.post(API.EXPORT_EXCEL, requestEntity.toJson());
+  Future getExcelUrl(MonitorRequestEntity requestEntity) async {
+    try {
+      String url =
+          await ReqModel.post(API.EXPORT_EXCEL, requestEntity.toJson());
+      return Future.value(API.reqUrl + url);
+    } catch (error) {
+      return Future.error(error);
+    }
   }
 }

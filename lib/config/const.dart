@@ -23,7 +23,7 @@ const String STATUS_SUSPECT_ILL = '疑似新冠肺炎';
 const String STATUS_CONFIRM_ILL = '确诊新冠肺炎';
 
 const TextStyle TEXT_STYLE_LABEL = TextStyle(
-  color: Color(0xff757575),
+  color: Colors.black,
   fontSize: 18,
   fontWeight: FontWeight.w500
 );
