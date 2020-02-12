@@ -34,28 +34,24 @@ class _MainPageBranchState extends State<MainPageBranch> {
                     flex: 0,
                     child: Padding(
                       padding: new EdgeInsets.all(25.0),
-                      child: Row(
+                      child:  Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Image.asset(
-                            LOGO,
-                            width: 45.0,
-                            height: 45.0,
-                          ),
+                          Image.asset(LOGO, width: 60, height: 60,),
                           Text(
-                            " 广东省农业科学院防疫信息系统",
-                            style: Theme.of(context).textTheme.title,
+                            "  广东省农业科学院\n防疫信息系统",
+                            //style: Theme.of(context).textTheme.headline,
+                            style: new TextStyle(fontSize: 30,fontWeight: FontWeight.w700),
+                            softWrap: true,
+                            textAlign: TextAlign.center,
                           ),
                         ],
-                      ),
+                      )
                     ),
                   ),
                   Flexible(
                     flex: 1,
-                    child: Column(
+                   /*child: Column(
                       children: <Widget>[
                         Information(),
                         SizedBox(
@@ -66,8 +62,24 @@ class _MainPageBranchState extends State<MainPageBranch> {
                           height: 4,
                         )
                       ],
-                    ),
+                    ),*/
+                   child:ListView(
+                     shrinkWrap: true,
+                     scrollDirection: Axis.vertical,
+                     children: <Widget>[
+                       Information(),
+                       SizedBox(
+                         height: 4,
+                       ),
+                       Persons(),
+                       SizedBox(
+                         height: 4,
+                       )
+                     ],
+                   ) ,
+
                   ),
+
                   Flexible(
                     flex: 0,
                     child: Builder(builder: (context) {

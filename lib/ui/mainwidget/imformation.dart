@@ -31,14 +31,14 @@ class _InformationState extends State<Information>{
                         new Text(
                           "机构名称：",
                           style: new TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700
                           ),
                         ),
                         new Text(
                           user.institute,
                           style: new TextStyle(
-                              fontSize: 15
+                              fontSize: 16
                           ),
                         ),
                       ],
@@ -52,14 +52,14 @@ class _InformationState extends State<Information>{
                         new Text(
                           "信息管理：",
                           style: new TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700
                           ),
                         ),
                         new Text(
                           user.adminName,
                           style: new TextStyle(
-                              fontSize: 15
+                              fontSize: 16
                           ),
                         ),
                       ],
@@ -73,14 +73,14 @@ class _InformationState extends State<Information>{
                         new Text(
                           "职工人数：",
                           style: new TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700
                           ),
                         ),
                         new Text(
                           "${user.staffNum}人",
                           style: new TextStyle(
-                              fontSize: 15
+                              fontSize: 16
                           ),
                         ),
                       ],
@@ -94,14 +94,14 @@ class _InformationState extends State<Information>{
                         new Text(
                           "今日填报：",
                           style: new TextStyle(
-                              fontSize: 15,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700
                           ),
                         ),
                         new Text(
                           "${user.fillNum}人次",
                           style: new TextStyle(
-                              fontSize: 15
+                              fontSize: 16
                           ),
                         ),
                       ],
