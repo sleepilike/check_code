@@ -38,7 +38,7 @@ class MonitorRepo {
     try {
       String url =
           await ReqModel.post(API.EXPORT_EXCEL, requestEntity.toJson());
-      return Future.value(API.reqUrl + url);
+      return Future.value(API.RESOURCE_PATH + url);
     } catch (error) {
       return Future.error(error);
     }

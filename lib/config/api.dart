@@ -1,7 +1,8 @@
 class API {
   // 请求的url
-//  static const reqUrl = 'http://120.79.185.173:8080/healthy_register_sys/';
-  static const reqUrl = 'http://127.0.0.1:8080/'; // 本地测试
+  static const reqUrl = 'http://120.79.185.173:8080/healthy_register_sys/';
+  static const RESOURCE_PATH = 'http://120.79.185.173:8080/health/';
+//  static const reqUrl = 'http://127.0.0.1:8080/'; // 本地测试
 
   static const LOGIN = 'admin_s/login';
 
