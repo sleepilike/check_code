@@ -4,6 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:registration_admin/data/user_state_model.dart';
+import 'package:registration_admin/ui/widget/header.dart';
 
 import '../../common/check.dart';
 import '../../config/const.dart';
@@ -49,22 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Padding(
                       padding: new EdgeInsets.all(25.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            LOGO,
-                            width: 45,
-                            height: 45,
-                          ),
-                          Text(
-                            " 广东省农业科学院防疫信息系统",
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.title,
-                          ),
-                        ],
-                      ),
+                      child: Header(),
                     ),
                     Padding(
                       padding: new EdgeInsets.fromLTRB(

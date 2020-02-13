@@ -8,6 +8,7 @@ import 'package:registration_admin/ui/dialog/condition_dialog.dart';
 import 'package:registration_admin/ui/loginpage/login.dart';
 import 'package:registration_admin/ui/mainwidget/imformation.dart';
 import 'package:registration_admin/ui/mainwidget/persons.dart';
+import 'package:registration_admin/ui/widget/header.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainPageBranch extends StatefulWidget {
@@ -27,32 +28,17 @@ class _MainPageBranchState extends State<MainPageBranch> {
                 MonitorStateModel()..init(adminId, value.user.role),
             child: Container(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Flexible(
-                    flex: 0,
-                    child: Padding(
-                      padding: new EdgeInsets.all(25.0),
-                      child:  Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(LOGO, width: 60, height: 60,),
-                          Text(
-                            "  广东省农业科学院\n防疫信息系统",
-                            //style: Theme.of(context).textTheme.headline,
-                            style: new TextStyle(fontSize: 30,fontWeight: FontWeight.w700),
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      )
-                    ),
-                  ),
-                  Flexible(
                     flex: 1,
-                   /*child: Column(
+                   child: ListView(
+                     shrinkWrap: true, // 指定自动计算高度
                       children: <Widget>[
+                        SizedBox(height: 20,),
+                        Header(),
+                        SizedBox(height: 20,),
                         Information(),
                         SizedBox(
                           height: 4,
@@ -62,24 +48,9 @@ class _MainPageBranchState extends State<MainPageBranch> {
                           height: 4,
                         )
                       ],
-                    ),*/
-                   child:ListView(
-                     shrinkWrap: true,
-                     scrollDirection: Axis.vertical,
-                     children: <Widget>[
-                       Information(),
-                       SizedBox(
-                         height: 4,
-                       ),
-                       Persons(),
-                       SizedBox(
-                         height: 4,
-                       )
-                     ],
-                   ) ,
+                    ),
 
                   ),
-
                   Flexible(
                     flex: 0,
                     child: Builder(builder: (context) {

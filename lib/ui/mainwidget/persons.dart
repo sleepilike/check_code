@@ -96,7 +96,7 @@ class _PersonsState extends State<Persons> {
   Widget buildTableCell({label, style}) {
     return new Container(
       alignment: Alignment.center,
-      child: new Text(label,
+      child: new Text(label??'', // 如果label为null，就置空
           textAlign: TextAlign.center,
           style: style == null ? Theme.of(context).textTheme.bodyText2 : style),
     );
