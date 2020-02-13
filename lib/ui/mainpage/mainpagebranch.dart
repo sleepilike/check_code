@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:registration_admin/config/const.dart';
+import 'dart:html';
 import 'package:registration_admin/data/monitor_state_model.dart';
 import 'package:registration_admin/data/user_state_model.dart';
 import 'package:registration_admin/ui/dialog/condition_dialog.dart';
@@ -122,6 +122,7 @@ class _MainPageBranchState extends State<MainPageBranch> {
       BotToast.showLoading();
       stateModel.exportExcel().then((value) {
         BotToast.closeAllLoading();
+        window.open(value, '导出excel下载');
         launch(value);
       }).catchError((err) {
         // 错误
