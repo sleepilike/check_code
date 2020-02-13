@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'data/user_state_model.dart';
 import 'ui/loginpage/login.dart';
 
@@ -21,7 +21,19 @@ class _MyAppState extends State<MyApp> {
       child: ChangeNotifierProvider<UserStateModel>( // 注册状态管理器
         create: (BuildContext context) => UserStateModel()..init(), // 初始化状态管理
         child: MaterialApp(
-          title: "广东省农业科学院防疫信息系统",
+          //配置中文
+          localizationsDelegates: [
+            //此处
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: [
+            //此处
+            const Locale('zh', 'CN'),
+            const Locale('en', 'US'),
+          ],
+          locale: Locale('zh'),
+          title: "广东省农业科学院职工健康信息报告系统",
           home: LoginPage(),
           navigatorObservers: [BotToastNavigatorObserver()],
           //2.registered route observer

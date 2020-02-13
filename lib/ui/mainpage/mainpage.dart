@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "广东省农业科学院防疫信息系统",
+      title: "广东省农业科学院职工健康信息报告系统",
       home:MainPageBranch(),
       theme: Theme.of(context).copyWith(
           scaffoldBackgroundColor: Colors.white,

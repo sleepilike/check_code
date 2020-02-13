@@ -65,13 +65,7 @@ class _ConditionState extends State<_ConditionWidget> {
                 Row(
                   children: <Widget>[
                     Text("定制表格", style: Theme.of(context).textTheme.title),
-                    SizedBox(width: 190.0),
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    )
+                    Text("(日期选择通过滑动翻页)"),
                   ],
                 ),
                 Visibility(

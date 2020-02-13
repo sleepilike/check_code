@@ -8,10 +8,11 @@ class Header extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset(LOGO, width: 60, height: 60,),
+        Image.asset(LOGO, width: 85, height: 85,),
         Text(
-          "  广东省农业科学院\n防疫信息系统",
-          style: new TextStyle(fontSize: 30,fontWeight: FontWeight.w700),
+          " 广东省农业科学院\n 职工健康信息报告系统",
+          //style: Theme.of(context).textTheme.headline,
+          style: new TextStyle(fontSize: 26,fontWeight: FontWeight.w700),
           softWrap: true,
           textAlign: TextAlign.center,
         ),
