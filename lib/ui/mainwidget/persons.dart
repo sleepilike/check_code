@@ -6,7 +6,28 @@ import 'package:registration_admin/ui/widget/non_register_widget.dart';
 
 import '../widget/card_item.dart';
 
+class PersonPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CardItem(
+        title: "监控信息",
+        child: Consumer<MonitorStateModel>(
+          builder:
+              (BuildContext context, MonitorStateModel value, Widget child) {
+            print('监控信息consumer exec, ' + value.isRegister.toString());
+            return Persons(value.resultList, value.isRegister);
+          },
+        ));
+  }
+
+}
+
 class Persons extends StatefulWidget {
+  List<WorkerEntity> resultList;
+  bool isRegister = false;
+
+  Persons(this.resultList, this.isRegister);
+
   @override
   State<StatefulWidget> createState() {
     return new _PersonsState();
@@ -16,60 +37,59 @@ class Persons extends StatefulWidget {
 class _PersonsState extends State<Persons> {
   int showLen = 0; // 显示的数量
   bool isOverflow = false;
+  int resultLen = 0;
+  bool showAll = false;
+
+
 
   Widget build(BuildContext context) {
-    return CardItem(
-        title: "监控信息",
-        child: Consumer<MonitorStateModel>(
-          builder:
-              (BuildContext context, MonitorStateModel value, Widget child) {
-            List<WorkerEntity> resultList = value.resultList;
-            // 避免溢出，
-            showLen = value.isRegister? ((isOverflow = resultList.length > 10)?
-            10: resultList.length): 0;
-            return Container(
-              width: double.infinity,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: new EdgeInsets.all(2.0),
-                    alignment: Alignment.center,
-                    child: value.isRegister? Table(
-                      defaultVerticalAlignment: TableCellVerticalAlignment.top,
-                      border: TableBorder.all(color: Colors.white),
-                      children: _buildTableRowList(resultList, showLen),
-                    ): NonRegisterWidget(),
-                  ),
-                  Align( // 查看全部按钮
-                    alignment: Alignment.centerRight,
-                    child: Visibility(
-                        visible: isOverflow,
-                        child: Container(
-                          child: FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  isOverflow = false;
-                                  showLen = resultList.length;
-                                });
-                              },
-                              child: Text(
-                                '查看全部',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1
-                                    .copyWith(
-                                    color: Theme.of(context).primaryColor),
-                              )),
-                        )),
-                  )
-                ],
-              ),
-            );
-          },
-        ));
+    if (!showAll && widget.isRegister) {
+      resultLen = widget.resultList.length;
+      showLen = (isOverflow = resultLen>10)? 10:resultLen;
+    }
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: new EdgeInsets.all(2.0),
+            alignment: Alignment.center,
+            child: widget.isRegister? Table(
+              defaultVerticalAlignment: TableCellVerticalAlignment.top,
+              border: TableBorder.all(color: Colors.white),
+              children: _buildTableRowList(widget.resultList, showLen),
+            ): NonRegisterWidget(),
+          ),
+          Align( // 查看全部按钮
+            alignment: Alignment.centerRight,
+            child: Visibility(
+                visible: isOverflow,
+                child: Container(
+                  child: FlatButton(
+                      onPressed: () {
+                        print('press 查看全部 exec');
+                        setState(() {
+                          showAll = true;
+                          isOverflow = false;
+                          showLen = resultLen;
+                        });
+                      },
+                      child: Text(
+                        '查看全部',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1
+                            .copyWith(
+                            color: Theme.of(context).primaryColor),
+                      )),
+                )),
+          )
+        ],
+      ),
+    );
   }
 
   List<TableRow> _buildTableRowList(List<WorkerEntity> resultList, int showLen) {

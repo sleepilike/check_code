@@ -7,6 +7,7 @@ import 'package:registration_admin/ui/dialog/condition_dialog.dart';
 import 'package:registration_admin/ui/loginpage/login.dart';
 import 'package:registration_admin/ui/mainwidget/imformation.dart';
 import 'package:registration_admin/ui/mainwidget/persons.dart';
+import 'package:registration_admin/ui/widget/auto_resize_widget.dart';
 import 'package:registration_admin/ui/widget/header.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,49 +19,51 @@ class MainPageBranch extends StatefulWidget {
 class _MainPageBranchState extends State<MainPageBranch> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<UserStateModel>(
-        builder: (BuildContext context, UserStateModel value, Widget child) {
-          int adminId = value.user.adminId;
-          return ChangeNotifierProvider<MonitorStateModel>( // 注册监控信息状态管理器
-            create: (BuildContext context) =>
-                MonitorStateModel()..init(adminId, value.user.role),
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Flexible(
-                    flex: 1,
-                   child: ListView(
-                     shrinkWrap: true, // 指定自动计算高度
-                      children: <Widget>[
-                        SizedBox(height: 20,),
-                        Header(),
-                        SizedBox(height: 20,),
-                        Information(),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Persons(),
-                        SizedBox(
-                          height: 4,
-                        )
-                      ],
-                    ),
+    return AutoResizeWidget(
+      child: Scaffold(
+        body: Consumer<UserStateModel>(
+          builder: (BuildContext context, UserStateModel value, Widget child) {
+            int adminId = value.user.adminId;
+            return ChangeNotifierProvider<MonitorStateModel>( // 注册监控信息状态管理器
+              create: (BuildContext context) =>
+              MonitorStateModel()..init(adminId, value.user.role),
+              child: Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      child: ListView(
+                        shrinkWrap: true, // 指定自动计算高度
+                        children: <Widget>[
+                          SizedBox(height: 20,),
+                          Header(),
+                          SizedBox(height: 20,),
+                          Information(),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          PersonPage(),
+                          SizedBox(
+                            height: 4,
+                          )
+                        ],
+                      ),
 
-                  ),
-                  Flexible(
-                    flex: 0,
-                    child: Builder(builder: (context) {
-                      return _buildButtonGroup(context);
-                    }),
-                  )
-                ],
+                    ),
+                    Flexible(
+                      flex: 0,
+                      child: Builder(builder: (context) {
+                        return _buildButtonGroup(context);
+                      }),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

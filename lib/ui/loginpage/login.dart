@@ -4,6 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:registration_admin/data/user_state_model.dart';
+import 'package:registration_admin/ui/widget/auto_resize_widget.dart';
 import 'package:registration_admin/ui/widget/header.dart';
 
 import '../../common/check.dart';
@@ -29,111 +30,113 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Consumer<UserStateModel>(
-          builder: (BuildContext context, UserStateModel value, Widget child) {
-            // 已经登陆，跳转到首页
-            if (value.autoLogin) {
-              Future.delayed(Duration(milliseconds: 500), (){
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MainPage()));
-              });
-            }
-            return Container(
-              child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: new EdgeInsets.all(25.0),
-                      child: Header(),
-                    ),
-                    Padding(
-                      padding: new EdgeInsets.fromLTRB(
-                          10.0, 50.0, leftRighthRadding, 10.0),
-                      child: Text(
-                        "管理员登录",
-                        style:
-                        TextStyle(color: Colors.black, fontSize: 30.0),
+    return AutoResizeWidget(
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Consumer<UserStateModel>(
+            builder: (BuildContext context, UserStateModel value, Widget child) {
+              // 已经登陆，跳转到首页
+              if (value.autoLogin) {
+                Future.delayed(Duration(milliseconds: 500), (){
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => MainPage()));
+                });
+              }
+              return Container(
+                child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 30,
                       ),
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: new EdgeInsets.fromLTRB(leftRighthRadding,
-                                10.0, leftRighthRadding, topBottomPadding),
-                            child: TextFormField(
-                              validator: (v) =>
-                                  strNoEmpty(v) ? null : '用户名不能为空',
-                              style: hintTips,
-                              controller: _useNameController,
-                              decoration: InputDecoration(
-                                labelText: '请输入用户名',
-                                hintText: '您的用户名',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13,
+                      Padding(
+                        padding: new EdgeInsets.all(25.0),
+                        child: Header(),
+                      ),
+                      Padding(
+                        padding: new EdgeInsets.fromLTRB(
+                            10.0, 50.0, leftRighthRadding, 10.0),
+                        child: Text(
+                          "管理员登录",
+                          style:
+                          TextStyle(color: Colors.black, fontSize: 30.0),
+                        ),
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: new EdgeInsets.fromLTRB(leftRighthRadding,
+                                  10.0, leftRighthRadding, topBottomPadding),
+                              child: TextFormField(
+                                validator: (v) =>
+                                strNoEmpty(v) ? null : '用户名不能为空',
+                                style: hintTips,
+                                controller: _useNameController,
+                                decoration: InputDecoration(
+                                  labelText: '请输入用户名',
+                                  hintText: '您的用户名',
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 13,
+                                  ),
+                                  prefixIcon: Icon(Icons.person),
                                 ),
-                                prefixIcon: Icon(Icons.person),
+                                obscureText: false,
                               ),
-                              obscureText: false,
                             ),
-                          ),
-                          Padding(
-                            padding: new EdgeInsets.fromLTRB(leftRighthRadding,
-                                10.0, leftRighthRadding, topBottomPadding),
-                            child: TextFormField(
-                              validator: (v) => strNoEmpty(v) ? null : '密码不能为空',
-                              style: hintTips,
-                              controller: _userPassController,
-                              decoration: new InputDecoration(
-                                hintText: "请输入密码",
-                                labelText: '请输入密码',
-                                hintStyle: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 13,
+                            Padding(
+                              padding: new EdgeInsets.fromLTRB(leftRighthRadding,
+                                  10.0, leftRighthRadding, topBottomPadding),
+                              child: TextFormField(
+                                validator: (v) => strNoEmpty(v) ? null : '密码不能为空',
+                                style: hintTips,
+                                controller: _userPassController,
+                                decoration: new InputDecoration(
+                                  hintText: "请输入密码",
+                                  labelText: '请输入密码',
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 13,
+                                  ),
+                                  prefixIcon: Icon(Icons.lock),
                                 ),
-                                prefixIcon: Icon(Icons.lock),
+                                obscureText: true,
                               ),
-                              obscureText: true,
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 360.0,
-                      margin: new EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
-                      padding: new EdgeInsets.fromLTRB(
-                          leftRighthRadding,
-                          topBottomPadding,
-                          leftRighthRadding,
-                          topBottomPadding),
-                      child: new Card(
-                        color: Colors.green,
-                        elevation: 6.0,
-                        child: new FlatButton(
-                            onPressed: () => _handleLogin(context),
-                            child: new Padding(
-                              padding: new EdgeInsets.all(10.00),
-                              child: new Text(
-                                "登录",
-                                style: new TextStyle(
-                                    color: Colors.white, fontSize: 16.0),
-                              ),
-                            )),
-                      ),
-                    )
-                  ]),
-            );
-          },
-        ));
+                      Container(
+                        width: 360.0,
+                        margin: new EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
+                        padding: new EdgeInsets.fromLTRB(
+                            leftRighthRadding,
+                            topBottomPadding,
+                            leftRighthRadding,
+                            topBottomPadding),
+                        child: new Card(
+                          color: Colors.green,
+                          elevation: 6.0,
+                          child: new FlatButton(
+                              onPressed: () => _handleLogin(context),
+                              child: new Padding(
+                                padding: new EdgeInsets.all(10.00),
+                                child: new Text(
+                                  "登录",
+                                  style: new TextStyle(
+                                      color: Colors.white, fontSize: 16.0),
+                                ),
+                              )),
+                        ),
+                      )
+                    ]),
+              );
+            },
+          )),
+    );
   }
 
   _handleLogin(BuildContext context) {

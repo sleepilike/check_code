@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:registration_admin/ui/loginpage/login.dart';
 import 'package:registration_admin/ui/mainpage/mainpagebranch.dart';
 
 class MainPage extends StatefulWidget {
