@@ -94,7 +94,7 @@ class _PersonsState extends State<Persons> {
 
   List<TableRow> _buildTableRowList(List<WorkerEntity> resultList, int showLen) {
     List<TableRow> rowList = List();
-    rowList.add(_buildTableHeader("姓名", "所处地点", "健康情况", "接触者\n健康状况"));
+    rowList.add(_buildTableHeader("姓名", "现居住地点", "健康情况", "周边人员身体\n健康情况"));
     for (int i = 0; i < showLen; i++) {
       WorkerEntity worker = resultList[i];
       rowList.add(_buildRowItem(worker.workerName, worker.workerCurAdd, worker.status, worker.closeStatus));
