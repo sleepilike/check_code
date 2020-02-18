@@ -50,6 +50,7 @@ class MonitorStateModel extends ChangeNotifier {
   }
 
   Future refreshData(MonitorRequestEntity requestEntity) async {
+    requestEntity.endTime = requestEntity.startTime; // 限制只能选择一天
     try {
       _resultList = await _repository.getList(requestEntity);
       _requestEntity = requestEntity;

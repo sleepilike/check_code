@@ -98,14 +98,8 @@ class _ConditionState extends State<_ConditionWidget> {
                     ],
                   ),
                 ),
-                DateSpinner("起始时间", widget._entity.startTime,
+                DateSpinner("选择时间", widget._entity.startTime,
                     (res) => widget._entity.startTime = res),
-                Divider(
-                  color: Colors.black,
-                  height: 4,
-                ),
-                DateSpinner("结束时间", widget._entity.endTime,
-                    (res) => widget._entity.endTime = res),
                 //SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
