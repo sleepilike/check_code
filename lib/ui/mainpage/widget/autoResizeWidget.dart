@@ -24,4 +24,3 @@ class AutoResizeWidget extends StatelessWidget {
         });
   }
 }
-
